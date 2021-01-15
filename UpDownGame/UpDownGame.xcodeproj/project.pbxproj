@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E95D855925B1334700B8799C /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D855825B1334700B8799C /* CreditViewController.swift */; };
 		E9E00FE425AB4BA40066C38B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E00FE325AB4BA40066C38B /* AppDelegate.swift */; };
 		E9E00FE625AB4BA40066C38B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E00FE525AB4BA40066C38B /* SceneDelegate.swift */; };
 		E9E00FE825AB4BA40066C38B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E00FE725AB4BA40066C38B /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E95D855825B1334700B8799C /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
 		E9E00FE025AB4BA40066C38B /* UpDownGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpDownGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E00FE325AB4BA40066C38B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9E00FE525AB4BA40066C38B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				E9E00FE325AB4BA40066C38B /* AppDelegate.swift */,
 				E9E00FE525AB4BA40066C38B /* SceneDelegate.swift */,
 				E9E00FE725AB4BA40066C38B /* ViewController.swift */,
+				E95D855825B1334700B8799C /* CreditViewController.swift */,
 				E9E00FE925AB4BA40066C38B /* Main.storyboard */,
 				E9E00FEC25AB4BA50066C38B /* Assets.xcassets */,
 				E9E00FEE25AB4BA50066C38B /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 				E9E00FE825AB4BA40066C38B /* ViewController.swift in Sources */,
 				E9E00FE425AB4BA40066C38B /* AppDelegate.swift in Sources */,
 				E9E00FE625AB4BA40066C38B /* SceneDelegate.swift in Sources */,
+				E95D855925B1334700B8799C /* CreditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +443,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F666X573LH;
 				INFOPLIST_FILE = UpDownGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,6 +463,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F666X573LH;
 				INFOPLIST_FILE = UpDownGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

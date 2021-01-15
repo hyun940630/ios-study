@@ -40,7 +40,6 @@ class ViewController: UIViewController {
     }
     
     func showAlert(message: String) {
-        
         // nil = 없다
         let alert = UIAlertController(title: nil,
                                       message: message,

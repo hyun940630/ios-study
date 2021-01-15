@@ -80,6 +80,9 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     </preferredSymbolConfiguration>
                                 </state>
+                                <connections>
+                                    <segue destination="vAv-n4-pYT" kind="presentation" modalTransitionStyle="crossDissolve" id="bhx-F9-9iK"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1e-ps-gH6">
                                 <rect key="frame" x="438.5" y="155" width="19" height="21"/>
@@ -125,13 +128,80 @@
             </objects>
             <point key="canvasLocation" x="-196.20535714285714" y="115.94202898550725"/>
         </scene>
+        <!--Credit View Controller-->
+        <scene sceneID="Nka-YJ-GKr">
+            <objects>
+                <viewController id="vAv-n4-pYT" customClass="CreditViewController" customModule="UpDownGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qaa-1e-STf">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activeChat" translatesAutoresizingMaskIntoConstraints="NO" id="mvp-kx-rVa">
+                                <rect key="frame" x="64" y="99" width="235" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="CJm-Wg-vqb"/>
+                                    <constraint firstAttribute="height" constant="216" id="lso-UZ-L0f"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ml-fV-yft">
+                                <rect key="frame" x="64" y="20" width="42" height="39"/>
+                                <state key="normal" image="xmark" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="large">
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                    </preferredSymbolConfiguration>
+                                </state>
+                                <connections>
+                                    <action selector="touchUpDismissButton:" destination="vAv-n4-pYT" eventType="touchUpInside" id="4aq-DZ-w3C"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="chZ-FX-jO4">
+                                <rect key="frame" x="359" y="60" width="433" height="273"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Hello World!
+
+iOS 개발을 시작해보아요🐶
+
+https://developer.apple.com/swift/</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YZR-kj-Z6f"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="chZ-FX-jO4" firstAttribute="top" secondItem="YZR-kj-Z6f" secondAttribute="top" constant="60" id="4bs-qD-Z0g"/>
+                            <constraint firstItem="YZR-kj-Z6f" firstAttribute="bottom" secondItem="chZ-FX-jO4" secondAttribute="bottom" constant="60" id="D2f-zT-BFr"/>
+                            <constraint firstItem="YZR-kj-Z6f" firstAttribute="trailing" secondItem="chZ-FX-jO4" secondAttribute="trailing" constant="60" id="HoO-GG-qke"/>
+                            <constraint firstItem="chZ-FX-jO4" firstAttribute="leading" secondItem="mvp-kx-rVa" secondAttribute="trailing" constant="60" id="bgr-Tw-KBk"/>
+                            <constraint firstItem="1ml-fV-yft" firstAttribute="leading" secondItem="YZR-kj-Z6f" secondAttribute="leading" constant="20" id="exk-ev-Cn3"/>
+                            <constraint firstItem="chZ-FX-jO4" firstAttribute="centerY" secondItem="Qaa-1e-STf" secondAttribute="centerY" id="fVM-jC-2r1"/>
+                            <constraint firstItem="mvp-kx-rVa" firstAttribute="centerY" secondItem="Qaa-1e-STf" secondAttribute="centerY" id="iyb-Pz-f79"/>
+                            <constraint firstItem="mvp-kx-rVa" firstAttribute="leading" secondItem="YZR-kj-Z6f" secondAttribute="leading" constant="20" id="k7K-c2-ABf"/>
+                            <constraint firstItem="1ml-fV-yft" firstAttribute="top" secondItem="YZR-kj-Z6f" secondAttribute="top" constant="20" id="uB9-nh-7k3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zis-Fa-Qv2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="514" y="116"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="activeChat" width="1395" height="1443"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="memories" catalog="system" width="128" height="110"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="separatorColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
