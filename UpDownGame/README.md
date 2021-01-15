@@ -138,3 +138,114 @@ func showAlert(message: String) {
 ```
 
 (2) 화면의 ViewController 선택 후 Connection Inspector의 Recived Actions에 방금 작성한 `touchUpDismissButton`를 찾습니다. 이를 드레그로 돌아갈 기능을 하는 버튼에 드랍하고 `Touch Up Inside`를 선택합니다.
+
+<br />
+<br />
+<br />
+
+## Unit Test
+
+```swift
+//
+//  UpDownGameTests.swift
+//  UpDownGameTests
+//
+//  Created by xtring on 2021/01/10.
+//
+
+import XCTest
+@testable import UpDownGame
+
+class UpDownGameTests: XCTestCase {
+
+    /*
+     * setUp()과 tearDown()는 클래스의 각 테스트 메소드의 호출 전(setUp)/후(tearDown)에 호출됩니다.
+     * setUp()과 tearDown()의 역할 : 항목이 존재해야하거나 특정 상태가 필요한 테스트가 있으므로 setUp에 이러한 작업(객체 인스턴스 만들기, db 초기화, 규칙 작성 등)을 수행
+     *                           또한 각 테스트가 시작된 위치에서 멈춰야한다는 것을 알기 때문에 앱 상태를 초기 상태(예: 파일 닫기, 연결, 새로 만든 항목 제거, 트랜잭션 콜백 등)
+     *                           로 복원원해야 함을 의미합니다.(이 단계는 tearDown에 포함됨)
+     *
+     * 따라서 테스트 자체에는, 결과를 얻기 위해 테스트 객체에서 수행 할 동작만 포함되어야하며 setUp 및 tearDown은 테스트 코드를 깨끗하고 유연하게 유지하는데 도움이되는 메서드입니다.
+     */
+
+    // setUp() : 초기화 코드
+    // setUp() 클래스 메소드는 테스트 케이스가 시작될 때 테스트 케이스의 첫 번째 테스트가 실행되기 전에 정확히 한 번 호출됩니다.
+    override func setUpWithError() throws {
+        // ...
+    }
+
+    // tearDown() : 해체 코드
+    // tearDown() 클래스 메소드는 모든 개별 테스트가 실행된 후 테스트 케이스가 끝날 때 정확히 한 번 호출됩니다.
+    override func tearDownWithError() throws {
+        // ...
+    }
+
+    func testExample() throws {
+    }
+
+    func testPerformanceExample() throws {
+        self.measure {
+        }
+    }
+}
+
+```
+
+<br />
+<br />
+<br />
+
+## UI Test
+
+```swift
+//
+//  UpDownGameUITests.swift
+//  UpDownGameUITests
+//
+//  Created by xtring on 2021/01/10.
+//
+
+import XCTest
+
+class UpDownGameUITests: XCTestCase {   // XCTestCase는 테스트에 필요한 기본적인 기능을 제공하기 때문에, 모든 테스트 클래스는 XCTestCase를 상속받아 구현해야함
+
+    // let app = XCUIApplication()  // 테스트를 위한 UIApplication 세팅
+
+    /*
+     *  setUp & tearDown : 테스트 전과 후에 필요한 작업을 실행할 수 있는 기회가 제공되는ㄴ setUp과 tearDown 함수는 아래와 같은 순서로 출됩니다.
+     *  setUp() -> test_func() -> tearDown()
+     *
+     *  UI 테스트를 위해서는 XCUIApplication의 launch 함수를 호출하여 앱을 실행해주어야 하는데, setUp에서 호출해주면 테스트 함수가 실행되기 직전에 매번 앱이 실행됩니다.
+     */
+
+    override func setUpWithError() throws {
+
+        continueAfterFailure = false
+        // app.lauch() // 테스트 앱 실행
+    }
+
+    override func tearDownWithError() throws {
+        // ...
+    }
+
+    /*
+     *  XCUIElement : UI 테스트에서 UIButton 또는 UILabel 등의 컴포넌트를 대신하는 객체입니다.
+     *              UI 테스트는 사람이 실제로 앱을 사용하는 것처럼 현재 실행 중인 앱에서 필요한 UI 컴포넌트를 찾아 Tap을 하거나, 텍스트를 입력하고 스크롤을 하는 등의 동작을 구현해야 합니다.
+     *              Element 존재 여부인 exists, 터치를 위한 tap, 텍스트 입력을 위한 typeText 함수가 주로 사용하는 XCUIElement의 대표적인 Property 및 함수입니다.
+     */
+
+    /*
+     *  XCUIElementQuery : 화면에 그려진 XCUIElement를 찾기 위해서는 XCUIElementQuery를 사용할 수 있는데, 클래스 이름처럼 Query를 통해 현재 앱에 보이고 있는 Element를 찾을 수 있습니다. 컴포넌트를 찾는 원리는 매우 간단합니다. 뷰는 트리 형태로 구성되어 있어 Element Hierarchy를 이해하면 Element를 쉽게 찾을 수 있습니다.
+     */
+
+    func test_func() throws {
+    }
+
+    func testLaunchPerformance() throws {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+            measure(metrics: [XCTApplicationLaunchMetric()]) {
+                XCUIApplication().launch()
+            }
+        }
+    }
+}
+```
