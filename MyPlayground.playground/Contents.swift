@@ -176,3 +176,57 @@ while i < 100 {
     i += 1
 }
 
+
+
+// 옵셔널(Optional)
+// Swift가 가지고 있는 가장 큰 특징 중 하나가 바로 옵셔널(Optional)입니다. '선택적인'이라는 뜻은 곳 값이 있을 수도 있고 없을 수도 있는 것을 나타냅니다.
+// 예를 들어 문자열에 값이 있으면 "가나다"가 됩니다. 값이 없다면 ""일까요? 아니요 ""도 엄연히 값이 있는 문자열입니다. 정확히는 '값이 없다'가 아닌 '빈 값'입니다. 값이 없는 문자열은 바로 nil입니다.
+// 또 다른 예로 정수형의 값이 있으면 123입니다. 값이 없다면 0일까요? 0은 0이라는 숫자 '값'입니다. 이 경우에도 값이 없는 정수는 nil입니다.
+// 마찬가지로, 빈 배열이나 빈 딕셔너리라고 해서 '값이 없는'것이 아닙니다. 다만 '비어 있을'뿐이죠. 배열과 딕셔너리의 경우에도 '없는 값'은 nil입니다.
+// 이렇게, 값이 없는 경우를 나타낼 때는 nil을 사용합니다. 그렇다고 해서 모든 변수에 nil을 넣을 수 있는 것은 아닙니다. 예로, 우리가 위에서 정의한 name이라는 변수에 nil을 넣으려 하면 에러가 발생합니다.
+//name = nil  // Error!
+
+// 값이 있을 수도 있고 없을 수도 있는 변수르 정의할 때는 타입 어노테이션에 ?을 붙여야 합니다. 이렇게 정의한 변수를 바로 옵셔널(Optional)이라고 하고요. 옵셔널에 초깃값을 지정하지 않으면 기본값은 nil입니다.
+//var email: String?
+//print(email)    // nil
+
+//email = "hh940630@gmail.com"
+//print(email)    // Opional("hh940630@gmail")
+
+// 옵셔널로 정의한 변수는 옵셔널이 아닌 변수와 다릅니다. 예를 들어 아래와 같은 코드는 사용할 수 없습니다.
+//let optionalEmail: String? = "hh940630@gmail.com"
+//let requiredEmail: String = optionalEmail   // Error!
+
+// requiredEmail 변수는 옵셔널이 아닌 String이기 때문에 항상 값을 가지고 있어야 합니다. 반면에, optionalEmail은 옵셔널로 선언된 변수이기 때문에 실제 코드가 실행되기 전까지는 값이 있는지 없는지 알 수 없습니다. 따라서 Swift 컴파일러는 안전을 위해 requiredEmail에는 옵셔널로 선언된 변수를 대입할 수 없게 만들었습니다.
+// 옵셔널은 개념적으로 이렇게 표현할 수 있습니다. 어떤 값 또는 nil을 가지고 있는 녀석이죠.
+// Optional == 'Any Type data' or 'nil'
+
+// 옵셔널 바인딩(Optional Binding)
+// 그렇다면 옵셔널 값을 가져오고 싶을 땐 어떻게 할까요? 그럴때는 옵셔널 바인딩을 사용합니다.
+// 옵셔널 바인딩은 옵셔널의 값이 존재하는지를 검사한 뒤, 존재하면 그 값을 다른 변수에 대입시켜줍니다. if let 또는 if var를 사용합니다. 옵셔널의 값을 벗겨서 값이 있다면 if 문 안으로 들어가고, 값이 nil이라면 그냥 통과하게 됩니다.
+// 예를 들어, 아래의 코드에 optionalEmail에 값이 존재한다면 email이라는 변수 안에 실제 값이 저장되고, if문 내에서 그 값을 사용할 수 있습니다. 만약 optionalEmail이 nil이라면 if문이 실행되지 않고 넘어갑니다.
+//if let email = optionalEmail {    // 만약 optionalEmail의 값이 존재하지 않는다면 if문을 그냥 지나칩니다.
+//    print(email)
+//}
+
+// 하나의 if문에서 콤마(,)로 구분하여 여러 옵셔널을 바인딩할 수 있습니다. 이곳에 사용된 모든 옵셔널의 값이 존재해야 if문 안으로 진입합니다.
+var optionalName: String? = "황현"
+var optionalEmail: String? = "hh940630@gmail.com"
+
+if let name2 = optionalName,
+   let email2 = optionalEmail {
+   // name2과 email2 값이 존재
+    print(name2)
+    print(email2)
+}
+
+// 옵셔널 바인딩 시 ,를 사용해서 조건도 함께 지정할 수 있습니다. ,이후의 조건절은 옵셔널 바인딩이 일어난 후에 실행됩니다. 즉, 옵셔널이 벗겨진 값을 가지고 조건을 검사하게 됩니다.
+var optionalAge: Int? = 22
+
+if let age = optionalAge, age >= 20 {
+    print("age")
+}
+
+// 옵셔널 체이닝(Optional Chaining)
+// 배열이 '빈 배열'인지를 검사하려면 어떤 방법이 있을까요? nil이 아니면서 빈 배열인지를 확인해보면 될 것입니다
+
