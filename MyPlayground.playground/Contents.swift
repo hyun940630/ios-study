@@ -56,3 +56,43 @@ String(birthyear) + "년에 태어난 " + name + "아 안녕!"  // 1994년에 �
 // 이렇게 간단하게도 사용가능 합니다! 결과는 같습니다.
 "\(birthyear)년에 태어난 \(name)아 안녕!" // 1994년에 태어난 Hwang Hyun아 안녕!
 
+
+// 타입 추론(Type Inference)
+// 우리가 맨 처음 작성한 예제에서는 자료형을 명시하지 않았지만 Swift는 에러를 보여주지 않았어요. Swift 컴파일러는 자동으로 ""는 String, 숫자는 Int 타입인 것을 인식할 수 있답니다. 이렇게 타입을 직접 명시하지 않고도 값을 가지고 정적 타이핑을 할 수 있게 해주는 것을 타입 추론(Type Inference)라고 합니다.
+
+// 배열(Array)과 딕셔너리(Dictionary)
+// 배열과 딕셔너리는 모두 대괄호([])를 이용해서 정의할 수 있습니다.
+//var languages = ["Swift", "Objective-C", "Python"]
+//var capitals = [
+//    "한국" : "서울",
+//    "일본" : "도쿄",
+//    "중국" : "베이징",
+//]
+
+// 딕셔너리는 키를 가진 배열입니다!
+// 배열과 딕셔너리에 접근하거나 값을 변경할 때에도 대괄호를 사용합니다.
+languages[0]    // Swift
+languages[1] = "Ruby"
+
+capitals["한국"]  // 서울
+capitals["프랑스"] = "파리"  // "프랑스" : "파리" 추가
+
+// 참고로, 다른 상수와 마찬가지로 배열과 딕셔너리를 let으로 선언한다면 값을 수정할 수 없습니다. 물론 값을 추가하거나 빼는 것도 불가능합니다.
+
+// 그렇다면 위에서 정의한 languages와 capitals의 타입은 어떻게 쓸 수 있을까요? 대괄호를 사용합니다! 대괄호 안에 어떤 타입을 받을 것인지를 명시합니다.
+var languages: [String] = ["Swift", "Objective-C", "Python"]
+var capitals: [String: String] = [
+    "한국" : "서울",
+    "일본" : "도쿄",
+    "중국" : "베이징",
+]
+
+// 만약, 빈 배열이나 빈 딕셔너리를 정의하고 싶다면? 빈 대괄로를 사용합니다.
+var blankLanguages: [String] = []
+var blankCapitals: [String: String] = [:]
+
+// 빈 배열로 선언하는 것은 좀 더 간결하게 사용할 수도 있습니다.
+var blank2Languages = [String]()
+var blank2Capitals = [String: String]()
+
+// 타입 뒤에 괄호( () )를 쓰는 것은 생성자(Initializer)를 호출하는 것입니다. 따라서, blank2Languages는 String 값을 가진 배열을 생성하는 것이고, blank2Capitals는 String: String 값을 가진 딕셔너리를 배열을 생성하는 것입니다.
