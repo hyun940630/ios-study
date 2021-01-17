@@ -229,4 +229,56 @@ if let age = optionalAge, age >= 20 {
 
 // 옵셔널 체이닝(Optional Chaining)
 // 배열이 '빈 배열'인지를 검사하려면 어떤 방법이 있을까요? nil이 아니면서 빈 배열인지를 확인해보면 될 것입니다
+let array: [String]? = []
+var isEmptyArray = false
 
+if let array = array, array.isEmpty {
+    isEmptyArray = true
+} else {
+    isEmptyArray = false
+}
+
+isEmptyArray
+
+// 옵셔널 체이닝을 사용하면 이 코드를 더 간결하게 쓸 수 있습니다.
+let isEmptyArray2 = array?.isEmpty == true
+
+// 옵셔널 체이닝은 옵셔널의 속성에 접근할 때, 옵셔널 바인딩 과정을 ? 키워드로 줄여주는 역할을 합니다. 다음 같이 3가지의 경우의 수를 생각해봅시다.
+// (1) array가 nil인 경우
+//array?.isEmpty    // array?까지 실행되고 'nil'을 반환
+
+// (2) array가 빈 배열인 경우
+//array?.isEmpty    // array?.isEmpty까지 실행되고 'true'를 반환
+
+// (3) array에 요소가 있는 경우
+//array?.isEmpty    // array?.isEmpty까지 실행되고 'false'를 반환
+
+// array?.isEmpty의 결과로 나올 수 있는 값은 nil, true, false가 됩니다. isEmpty의 반환값은 Bool인데, 옵셔널 체이닝으로 인해 Bool?을 반환하도록 바뀐 것입니다. 따라서 실제로 값이 실제로 true인지 확인하기 위해서 == true 를 해주어야 합니다.
+
+// 옵셔널 벗기기
+// 옵셔널을 사용할 때마다 옵셔널 바인딩을 하는 것이 가장 바람직합니다. 하지만, 개발을 하다보면 분명히 값이 존재할 것임에도 불구하고 옵셔널로 사용해야 하는 경우가 종종있습니다. 이럴 때는 옵셔널에 값이 있다고 가정하고 값에 바로 접근 할 수 있도록 도와주는 키워드인 !를 붙여서 사용하면 됩니다.
+//print(optionalEmail)    // Optional("hh940630@gmail.com")
+//print(optionalEmail!)   // hh940630@gmail.com
+
+// !를 사용 할때는 주의할 점이 있습니다. 옵셔널 값이 nil인 경우에는 런타임 에러가 발생한는 것입니다! Java의 NullPointException과 비슷하다고 생각하면 됩니다.
+// var optionalEmail: String?
+// print(optionalEmail!)
+
+// ** 런타임 에러가 발생하면 iOS 앱은 강제로 종료(크래시)됩니다. 그러니 굉장히 신경써야 합니다.
+
+// 암묵적으로 벗겨진 옵셔널(Implicitly Unwrapped Optional)
+// 만약, 옵셔널을 정의할 때 ? 대신 !를 붙이면 ImplicitlyUnwrappedOptional 이라는 옵셔널로 정의됩니다. 이름이 굉장히 깁니다. 직역하면 '암묵적으로 벗겨진 옵셔널'입니다.
+//var email: String! = "hh940630@gmail.com"
+//print(email)  // hh940630@gmail.com
+
+// 이렇게 정의된 옵셔널은 nil을 포함할 수 있는 옵셔널이긴 한데, 접근할 때 옵셔널 바인딩이나 옵셔널을 벗기는 과정을 거치지 않고도 바로 값에 접근할 수 있다는 점에서 일반적인 옵셔널과 조금 다릅니다.
+
+// 옵셔널 벗기기와 마찬가지로, 값이 없는데 접근을 시도하면 런타임 에러가 발생합니다.
+//var email: String!
+//print(email)  // Error!
+
+// 가급적이면 일반적인 옵셔널을 사용해서 정의하고, 옵셔널 바인딩 또는 옵셔널 체이닝을 통해 값에 접근하는 것이 더 바람직합니다
+
+/*
+ Tip: Swift 2 버전에서는 "\(email)"과 같이 문자열을 포맷팅하면 devxoul@gmail.com이 나왔으나, Swift 3 버전부터는 ImplicitlyUnwrappedOptional을 문자열 포맷팅 할 경우 Optional("devxoul@gmail.com")로 포맷팅되니 주의해서 사용해야 합니다. Swift 3 버전부터 ImplicitlyUnwrappedOptional을 일반 Optional과 거의 동일하게 취급했기 때문인데, 자세한 이유는 SE-0054 문서에 잘 나와있습니다.
+ */
