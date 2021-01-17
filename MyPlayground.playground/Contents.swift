@@ -282,3 +282,95 @@ let isEmptyArray2 = array?.isEmpty == true
 /*
  Tip: Swift 2 버전에서는 "\(email)"과 같이 문자열을 포맷팅하면 devxoul@gmail.com이 나왔으나, Swift 3 버전부터는 ImplicitlyUnwrappedOptional을 문자열 포맷팅 할 경우 Optional("devxoul@gmail.com")로 포맷팅되니 주의해서 사용해야 합니다. Swift 3 버전부터 ImplicitlyUnwrappedOptional을 일반 Optional과 거의 동일하게 취급했기 때문인데, 자세한 이유는 SE-0054 문서에 잘 나와있습니다.
  */
+
+
+
+
+// 함수와 클로저
+// 함수는 func 키워드를 사용합니다. -> 사용해서 함수의 반환 타입을 지정합니다.
+func hello(name: String, time: Int) -> String {
+    var string = ""
+    for _ in 0..<time {
+        string += "\(name)님 안녕하세요\n"
+    }
+    
+    return string
+}
+
+// Swift에서는 독특하게 함수를 호출할 때 파라미터 이름을 함께 써주어야 합니다.
+hello(name: "황  현", time: 3)
+
+// 만약, 함수를 호출할 때 사용하는 파라미터 이름과 함수 내부에서 사용하는 파라미터 이름을 다르게 사용하고 싶으면 이렇게 할 수 있습니다.
+func hello2(to name: String, numberOfTimes time: Int) {
+    // 함수 내부에서는 'name'과 'time'으로 사용합니다.
+    for _ in 0..<time {
+        print(name)
+    }
+}
+
+hello2(to: "황  현", numberOfTimes: 3)    // 이곳에서는 'to'와 'numberOfTime'를 사용합니다.
+
+// 파라미터 이름을 _로 정의하면 함수를 호출할 때 파라미터 이름을 생략할 수 있게 됩니다.
+func hello3(_ name: String, time: Int) {
+    for _ in 0..<time {
+        print(name)
+    }
+}
+
+hello3("황현", time: 3)   // 'name: '이 생략되었습니다.
+
+// 파라미터에 기본 값을 지정할 수도 있습니다. 기본 값이 지정된 파라미터는 함수 호출시 생략할 수 있습니다.
+func hello4(name: String, time: Int = 1) {
+    // ...
+}
+hello4(name: "황현")
+
+// ...을 사용하면 정해지지 않은 파라미터(Variadic Parameters)를 받을 수 있습니다.
+func sum(_ numbers: Int...) -> Int{
+    var sum = 0
+    for number in numbers {
+        sum += number
+    }
+    return sum
+}
+
+sum(1, 2)
+sum(3, 4, 5)    // 이렇게 정해지지 않은 파라미터를 받을 수 있습니다. 개수에 상관없이...
+
+// 함수 안에 함수를 또 작성할 수도 있습니다.
+func hello5(name: String, time: Int) {
+    func message(name: String) -> String{
+        return "\(name)님 안녕하세요!"
+    }
+    
+    for _ in 0..<time {
+        print(message(name: name))
+    }
+}
+
+hello5(name: "황현", time: 3)
+
+// 심지어 함수 안에 정의한 함수를 반환할 수 있습니다.
+func helloGenerator(message: String) -> (String) -> String {
+    func hello(name: String) -> String {
+        return name + message
+    }
+    return hello
+}
+
+let hello6 = helloGenerator(message: "님 안녕하세요!")
+hello6("황 현")
+
+// 여기서 핵심은, helloGenerator() 함수의 반환 타입이 (String) -> String라는 것입니다. 즉, helloGenerator()는 '문자열을 받아서 문자열을 반환한다.'라는 함수인 것입니다.
+
+// 만약, helloGenerator() 안에 정의한 hello() 함수가 여러개의 파라미터를 받는다면 이렇게 써야합니다.
+func helloGenerator2(message: String) -> (String, String) ->  String {
+    func hello(firstName: String, lastName: String) -> String {
+        return lastName + firstName + message
+    }
+    return hello
+}
+
+let hello7 = helloGenerator2(message: "님 안녕하세요!")
+hello7("현", "황")
+
