@@ -374,3 +374,89 @@ func helloGenerator2(message: String) -> (String, String) ->  String {
 let hello7 = helloGenerator2(message: "님 안녕하세요!")
 hello7("현", "황")
 
+
+// 클로저(Closure)
+// 클로저(Closure)를 사용하면 바로 위에 작성한 코드를 조금 더 간결하게 만들 수 있습니다. 클로저는 중괄호({})로 감싸진 '실행 가능한 코드 블럭'입니다.
+func helloGenerator3(message: String) -> (String, String) -> String {
+    return { (firstName: String, lastName: String) -> String in
+        return lastName + firstName + message
+    }
+}
+
+// 함수와 다르게 함수 이름 정의가 따로 존재하지 않습니다. 하지만 파라미터를 받을 수 있고, 반환 값이 존재할 수 있다는 점에서 함수와 동일합니다. 함수는 이름이 있는 클로저입니다.
+
+// 위 코드를 살펴 보면 ()를 통해 파라미터를 받고, ->를 통해 반환 타입을 명시합니다. 조금 다른 점은 in 키워드를 사용해서 파라미터, 반환 타입 영역과 실제 클로저의 코드를 분리하고 있습니다.
+//{ (firstName: String, lastName: String) -> String in
+//    return lastName + firstName + message
+//}
+
+// 클로저의 장범은 간결함과 유연함에 있습니다.
+// Swift 컴파일러의 타입 추론 덕분에, 함수의 반환 타입을 가지고 클로저에서 어떤 파라미터를 받고 어떤 타입을 반환하는지를 알 수 있습니다. 과감하게 생략해버립니다.
+func helloGenerator4(message: String) -> (String, String) -> String {
+  return { firstName, lastName in
+    return lastName + firstName + message
+  }
+}
+
+// 그런데 이것보다 더 생략이 가능합니다. 마찬가지로 타입 추론 덕분에 첫 번째 파라미터와 두번째 파라미터가 문자열이라는 것을 알 수 있스빈다. 첫 번째 파라미터는 $0, 두 번째 파라미터는 $1로 바꿔서 사용할 수 있습니다.
+func helloGenerator5(message: String) -> (String, String) -> String {
+  return {
+    return $1 + $0 + message
+  }
+}
+
+// 클로저 내부의 코드가 한줄이라면 return 까지도 생략할 수 있습니다
+func helloGenerator6(message: String) -> (String, String) -> String {
+  return { $1 + $0 + message }
+}
+
+// 여기서 불필요한 부분을 생략하면 1줄까지도 가능합니다.
+let hello8: (String, String) -> String = { $1 + $0 + "님 안녕하세요!" }
+hello8("현", "황")
+
+// 물론 옵셔널로도 정의할 수 있습니다. 옵셔널 체이닝도 가능하고요.
+var hello9: ((String, String) -> String)?
+hello9?("현", "황")
+
+// 클로저를 변수로 정의하고 함수에서 반환할 수도 있는 것처럼, 파라미터로도 받을 수 있습니다.
+func manipulate(number: Int, using block: (Int) -> Int) -> Int {
+    return block(number)
+}
+
+manipulate(number: 10, using: { (number: Int) -> Int in
+    return number * 2
+})
+
+// 이걸 생략하면?
+manipulate(number: 10, using: {
+  $0 * 2
+})
+
+// 만약 함수의 마지막 파라미터가 클로저라면, 괄호와 파라미터 이름마저 생략할 수 있습니다.
+manipulate(number: 10) {
+  $0 * 2
+}
+
+// 함수가 클로저 하나만을 파라미터로 받는다면, 괄호를 아예 쓰지 않아도 됩니다. sort()와 filter()
+var numbers = [1, 3, 2, 6, 7, 5, 8, 4]
+
+let sortedNumbers: () = numbers.sort { $0 < $1 }
+print(sortedNumbers) // [1, 2, 3, 4, 5, 6, 7, 8]
+
+let evens = numbers.filter { $0 % 2 == 0 }
+print(evens) // [2, 6, 8, 4]
+
+// 클로저 활용하기
+// 클로저는 Swift의 굉장히 많은 곳에서 사용됩니다. 바로 위에서 예시를 든 것처럼 sort()나 filter()와 같은 배열에 많이 쓰입니다. 대표적인 메서드로는 sort(), filter(), map(), reduce()가 있습니다.
+// map()은 파라미터로 받은 클로저를 모든 요소에 실행하고, 그 결과를 반환합니다. 예를 들어, 정수 배열의 모든 요소들에 2를 더한 값으로 이루어진 배열을 만들고 싶다면, 아래와 같이 작성할 수 있습니다.
+let arr1 = [1, 3, 6, 2, 7, 9]
+let arr2 = arr1.map { $0 * 2 } // [2, 6, 12, 4, 14, 18]
+
+// reduce()는 초깃값이 주어지고, 초깃값과 첫 번째 요소의 클로저 실행 결과, 그리고 그 결과와 두 번째 요소의 클로저 실행 결과, 그리고 그 결과와 세 번째 요소의 클로저 실행 결과, ... 끝까지 실행한 후의 값을 반환합니다. 바로 위에서 정의한 arr1의 모든 요소의 합을 구하고 싶다면, 아래와 같이 작성할 수 있습니다.
+arr1.reduce(0) { $0 + $1}   // 28
+
+/*
+ Tip: Swift에서는 연산자도 함수입니다. 함수는 곧 클로저이기 때문에 연산자는 클로저입니다. 1 + 2를 실행하면, +라는 이름을 가진 연산자 함수가 실행됩니다. 파라미터로는 1과 2가 넘겨지게 됩니다. 즉, + 함수는 파라미터 두 개를 받아서 합을 반환하는 클로저입니다. { $0 + $1 } 인거죠. 그렇기 때문에, 이런 문법도 가능해집니다. +라는 연산자를 클로저로 넘겨버리는 거죠.
+
+ arr1.reduce(0, +) // 28
+ */
