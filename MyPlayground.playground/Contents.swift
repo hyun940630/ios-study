@@ -620,4 +620,58 @@ class OverrideDog: Animal2 {
 
 
 // 속성(Properties)
+// 속성은 크게 두 가지로 나뉩니다. 값을 가지는 속성(Stored Property)과 계산되는 속성(Computed Property)인데요. 쉽게 말하면 속성이 그 값 자체를 가지고 있는지, 혹은 어떠한 연산을 수행한 뒤 그 결과를 반환하는지의 차이입니다.
+// 우리가 지금까지 정의하고 사용한 name, age와 같은 속성들은 모두 Stored Property입니다. Computed Property는 get, set을 사용해서 정의할 수 있습니다. set에서는 새로 설정될 값을 newValue라는 예약어를 통해 접근할 수 있습니다.
+struct Hex {
+    var decimal: Int?
+    var hexString: String? {
+        get {
+            if let decimal = self.decimal {
+                return String(decimal, radix: 16)
+            } else {
+                return nil
+            }
+        }
+        set {
+            if let newValue = newValue {
+                self.decimal = Int(newValue, radix: 16)
+            } else {
+                self.decimal = nil
+            }
+        }
+    }
+}
 
+var hex = Hex()
+hex.decimal = 10
+hex.hexString   // "a"
+
+hex.hexString = "b"
+hex.decimal     // 11
+// 위 코드에서 hexString은 실제 값을 가지고 있지는 않지만, decimal로부터 값을 받아와 16진수 문자열로 만들어서 반환합니다. decimal은 Stored Property, hexString은 Computed Property입니다.
+// 참고로, get만 정의할 경우에는 get 키워드를 생략할 수 있습니다. 이런 속성을 읽기 전용(Read Only)이라고 합니다.
+//class Hex {
+//    // ...
+//
+//    var hexCode: String? {
+//        if let hex = self.hexCode {
+//            return "0x" + hex
+//        }
+//        return nil
+//    }
+//}
+
+// get, set과 비슷한 willSet, didSet을 이용하면 속성에 값이 지정되기 직전과 직후에 원하는 코드를 실행할 수 있습니다.
+struct Hex2 {
+    var decimal: Int? {
+        willSet {
+            print("\(self.decimal)에서 \(newValue)로 값이 바뀔 예정입니다.")
+        }
+        didSet {
+            print("\(oldValue)에서 \(self.decimal)로 값이 바뀔 예정입니다.")
+        }
+    }
+}
+// 마찬가지로, willSet에서는 새로운 값을 newValue로 얻어올 수 있고, didSet에서는 예전 값을 oldValue라는 예약어를 통해 얻어올 수 있습니다.
+
+// willSet과 didSet은 일반적으로 어떤 속성의 값이 바뀌었을 대 UI를 업데이트하거나 특정 메서드를 호출하는 등의 역할을 할 때에 사용됩니다.
