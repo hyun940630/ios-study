@@ -1039,3 +1039,22 @@ converter.dollars // 117700
 //let oddEvenFilter: OddEvenFilter = [1, 3, 5, 2, 7, 4]
 //oddEvenFilter.odds  // [1, 3, 5, 7]
 //oddEvenFilter.evens // [2, 4]
+
+
+
+
+// 익스텐션(Extension)
+// Swift에서는 이미 정의된 타입에 새로운 속성이나 메서드를 추가할 수 있습니다. 익스텐션(Extension)이라는 기능입니다! extension 키워드를 사용해서 정의할 수 있습니다.
+extension String {
+  var length: Int {
+    return self.count
+  }
+
+  func reversed() -> String {
+    return self.reversed().map { String($0) }.joined(separator: "")
+  }
+}
+
+let strExtention = "안녕하세요"
+strExtention.length  // 5
+strExtention.reversed()  // 요세하녕안
