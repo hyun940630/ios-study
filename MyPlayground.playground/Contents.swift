@@ -952,4 +952,16 @@ let anyInstance: AnyObject = Dog()
 // Any와 AnyObject는 프로토콜입니다. Swift에서 사용 가능한 모든 타입은 Any를 따르도록 설계되었고, 모든 클래스들에는 AnyObject 프로토콜이 적용되어있습니다.
 
 
-// 
+// 타입 캐스팅(Type Casting)
+// anyNumber에 10을 넣었다고 해서 anyNumber가 Int는 아닙니다. 'Any 프로토콜을 따르는 어떤 값'이기 때문입니다. 따라서 아래와 같습니다.
+//anyNumber + 1   // Error!
+
+// 이럴 때에는 as를 이용해서 다운 캐스팅(Down Casting)을 해야 합니다. Any는 Int보다 더 큰 범위이기 때문에, 작은 범위로 줄인다고 하여 '다운 캐스팅'이라고 합니다.
+
+// Any는 Int뿐만 아니라 String과 같은 전혀 엉뚱한 타입도 포함되어 있기 때문에 무조건 Int로 변환되지 않습니다. 따라서 as?를 사용해서 옵셔널을 취해야 합니다.
+let number: Int? = anyNumber as? Int
+
+// 옵셔널이기 때문에, 옵셔널 바인딩 문법도 사용할 수 있습니다. 실제로 이렇게 사용하는 경우가 굉장히 많습니다.
+if let number = anyNumber as? Int {
+    print(number + 1)
+}
