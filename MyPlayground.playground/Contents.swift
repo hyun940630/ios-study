@@ -965,3 +965,12 @@ let number: Int? = anyNumber as? Int
 if let number = anyNumber as? Int {
     print(number + 1)
 }
+
+
+
+// 타입 검사
+// 타입 캐스팅까지는 필요 없고, 만약 어떤 값이 특정한 타입인지를 검사할 때에는 is를 사용할 수 있습니다.
+print(anyNumber is Int) // true
+print(anyNumber is Any) // true
+print(anyNumber is String)  // false
+print(anyNumber is String)  // true
