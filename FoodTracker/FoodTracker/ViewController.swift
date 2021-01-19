@@ -44,10 +44,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     
     private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
+        print(UIImagePickerController.InfoKey.originalImage.rawValue)
         // The info dictionary may contain multiple representations of the image. You want to use the original.
         guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
+        
+        print(selectedImage)
         
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
