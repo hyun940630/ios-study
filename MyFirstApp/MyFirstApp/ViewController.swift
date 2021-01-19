@@ -16,11 +16,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Circle의 위치 및 크기 설정
-        circle.frame = CGRect(x: centerX, y: centerY, width: 100, height: 100)
-        // circle의 색깔 설정
+        // circle을 뷰의 정중앙으로 이동하기 위해 위치를 조정해 준다.
+        circle.frame = CGRect(x: centerX - 50, y: centerY - 50, width: 100, height: 100)
         circle.layer.backgroundColor = UIColor.red.cgColor
-        // circle의 radius를 width(height)의 반으로 설정하여 원 모양으로 만듦
         circle.layer.cornerRadius = 50
         circle.layer.shadowOpacity = 0.5
         circle.layer.shadowRadius = 7
