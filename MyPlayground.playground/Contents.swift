@@ -885,3 +885,71 @@ default:
 
 
 
+// 프로토콜(Protocol)
+// 프로토콜(Protocol)은 인터페이스입니다. 최소한으로 가져야 할 속성이나 메서드를 정의합니다. 구현은 하지 않습니다.
+
+/// 전송가능한 인터페이스를 정의합니다.
+protocol Sendable {
+  var from: String? { get }
+  var to: String { get }
+
+  func send()
+}
+
+// 클래스와 구조체에 프로토콜을 적용(Conform)시킬 수 있습니다. 프로토콜을 적용하면, 프로토콜에서 정의한 속성과 메서드를 모두 구현해야 합니다.
+struct Mail: Sendable {
+  var from: String?
+  var to: String
+
+  func send() {
+    print("Send a mail from \(self.from) to \(self.to)")
+  }
+}
+
+struct Feedback: Sendable {
+  var from: String? {
+    return nil // 피드백은 무조건 익명으로 보냅니다.
+  }
+  var to: String
+
+  func send() {
+    print("Send a feedback to \(self.to)")
+  }
+}
+
+// 프로토콜은 마치 추상클래스처럼 사용될 수 있습니다.
+//func sendAnything(_ sendable: Sendable) {
+//  sendable.send()
+//}
+
+//let mail = Mail(from: "hh940630@gmail.com", to: "jeon@stylesha.re")
+//sendAnything(mail)
+
+//let feedback = Feedback(from: "hh940630@gmail.com")   // ? Error ?
+//sendAnything(feedback)
+
+// sendAnything() 함수는 Sendable 타입을 파라미터로 받습니다. Mail과 Feedback은 엄연히 다른 타입이지만, 모두 Sendable을 따르고 있으므로 sendAnything() 함수에 전달될 수 있습니다. 그리고, Sendable에서는 send() 함수를 정의하고 있기 대문에 호출이 가능합니다.
+
+// 프로토콜은 또다른 프로토콜을 따를 수 있습니다.
+//protocol Messagable {
+//    var message: String? { get }
+//}
+
+//protocol Sendable: Messagable {
+    // ...
+//}
+
+// Sendable은 Messagable을 기본적으로 따르는 프로토콜입니다. 따라서, Sendable을 적용하려면 var message: String? { get }을 정의해주어야 합니다.
+
+
+
+// Any와 AnyObject
+// Any는 모든 타입에 대응합니다. AnyObject는 모든 객체(Object)에 대응합니다.
+let anyNumber: Any = 10
+let anyString: Any = "Hi"
+
+let anyInstance: AnyObject = Dog()
+// Any와 AnyObject는 프로토콜입니다. Swift에서 사용 가능한 모든 타입은 Any를 따르도록 설계되었고, 모든 클래스들에는 AnyObject 프로토콜이 적용되어있습니다.
+
+
+// 
