@@ -974,3 +974,68 @@ print(anyNumber is Int) // true
 print(anyNumber is Any) // true
 print(anyNumber is String)  // false
 print(anyNumber is String)  // true
+
+
+
+// Swift 주요 프로토콜
+// Swift에는 기본적으로 제공하는 기초적인 프로토콜들이 있습니다. 알아두면 개발할 때 굉장히 유용하게 사용할 수 있습니다.
+
+// CutomStringConvertible
+// 자기 자신을 표현하는 문자열을 정의합니다. print(), String() 또는 "\()"에서 사용될 때의 값입니다. CustomStringConvertible의 정의는 아래와 같이 생겼습니다.
+//public protocol CustomStringConvertible {
+//    /// A textual representation of 'self'
+//    public var description: String { get }
+//}
+
+// 실제로 적용해봅시다!
+struct DogCustomStringConvertible: CustomStringConvertible {
+  var name: String
+  var description: String {
+    return "🐶 \(self.name)"
+  }
+}
+
+let dog = DogCustomStringConvertible(name: "찡코")
+print(dog) // 🐶 찡코
+
+// 응용하기: CustomDebugStringConvertible도 사용해 봅시다!
+
+
+// ExpressibleBy
+// 우리가 지금까지 10은 Int, "Hi"는 String이라고 '당연하게'인지하고 있었습니다. 하지만, 엄밀히 하자면 10은 원래 Int(10)으로 선언되어야 하고, "Hi"는 String("Hi")로 선언되어야 합니다. Int와 String 모두 생성자를 가지는 구조체이기 때문이죠.
+// 이렇게, 생성자를 사용하지 않고도 생성할 수 있게 만드는 것을 리터럴(Literal)이라고 합니다. 직역하면 '문자 그대로'라는 뜻입니다. 아래 코드는 문자 그대로 10, 문자 그대로 "Hi", 문자 그대로 배열이고 딕셔너리입니다.
+let literalNumber = 10
+let literalString = "Hi"
+let literalArray = ["a", "b", "c"]
+let literalDictionary = [
+    "key1": "value1",
+    "key2": "value2",
+]
+
+// 이 리터럴을 가능하게 해주는 프로토콜이 있답니다. 바로 ExpressibleByXXXLiteral 입니다. Int는 ExpressibleByIntegerLiteral을, String은 ExpressibleByStringLiteral을, Array는 ExpressibleByArrayLiteral을, Dictionary는 ExpressibleByDictionaryLiteral 프로토콜을 따르고 있습니다. 각 프로토콜은 리터럴 값을 받는 생성자를 정의하고 있습니다
+
+struct DollarConverter: ExpressibleByIntegerLiteral {
+  typealias IntegerLiteralType = Int
+
+  let price = 1_177
+  var dollars: Int
+
+  init(integerLiteral value: IntegerLiteralType) {
+    self.dollars = value * self.price
+  }
+}
+
+let converter: DollarConverter = 100
+converter.dollars // 117700
+
+//Tip: typealias는 C의 typedef와 같습니다. typealias MyInt = Int라고 하면, 새로 생성된 MyInt는 Int와 완전히 동일한 타입입니다. 프로토콜에서도 typealias를 정의할 수 있습니다.
+//
+//Tip: 1177은 가독성을 위해 1_177로 쓸 수 있습니다. 12_345는 12345랑 같아요. 1234_5도 12345와 같습니다.
+//
+//분명히 구조체를 만들었는데, ExpressibleByIntegerLiteral을 적용하니까 = 100과 같은 문법을 사용할 수 있게 되었습니다.
+//
+//응용하기: ExpressibleByArrayLiteral을 적용하여 아래와 같이 홀수와 짝수를 나눠서 보관하는 OddEvenFilter 구조체를 만들어보세요.
+
+//let oddEvenFilter: OddEvenFilter = [1, 3, 5, 2, 7, 4]
+//oddEvenFilter.odds  // [1, 3, 5, 7]
+//oddEvenFilter.evens // [2, 4]
