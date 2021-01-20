@@ -20,6 +20,7 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
             webView.uiDelegate = self
             webView.navigationDelegate = self
             webView.scrollView.bounces = false
+            webView.allowsBackForwardNavigationGestures = true
             
             self.view = self.webView!
         }

@@ -57,6 +57,9 @@
                                     <outletCollection property="gestureRecognizers" destination="Gtd-Yx-Lo1" appends="YES" id="P9n-sb-8X2"/>
                                 </connections>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tqZ-Td-uFe" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="500.5" width="252" height="44"/>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -64,8 +67,10 @@
                             <constraint firstItem="SeO-kZ-Cdt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="11a-mS-Kse"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SeO-kZ-Cdt" secondAttribute="trailing" constant="20" id="KIn-Iw-WsM"/>
                             <constraint firstItem="dvi-ig-s7Z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="LDn-OL-AzO"/>
+                            <constraint firstItem="tqZ-Td-uFe" firstAttribute="top" secondItem="dvi-ig-s7Z" secondAttribute="bottom" constant="8" id="S7c-pF-H6o"/>
                             <constraint firstItem="dvi-ig-s7Z" firstAttribute="top" secondItem="SeO-kZ-Cdt" secondAttribute="bottom" constant="8" id="Xku-BF-rqs"/>
                             <constraint firstItem="SeO-kZ-Cdt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ZCH-WW-THw"/>
+                            <constraint firstItem="tqZ-Td-uFe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="zpf-tW-LBs"/>
                         </constraints>
                     </view>
                     <connections>
