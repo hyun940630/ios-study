@@ -13,7 +13,7 @@
 1. 앱 실행 시 `main`함수는 `UIApplicationMain` 함수를 호출하며 `UIApplication`은 인스턴스를 생성하고 이를 `AppDelegate`에게 위임하여 관리한다.
 2. 앱 로딩 과정에서 Info.plist 내에서 메인 nib 파일 이름을 명시했다면, 자동으로 해당 nib 파일을 읽어들여서 UI 관련 객체들을 초기화한다.
 
-## 그렇다면 iOS앱이 시작되는 과정을 살펴보자.
+## iOS앱이 시작되는 과정을 살펴보자.
 
 iOS앱은 사실 `UIApplication`이라는 클래스의 객체이다. 프로젝트의 `main` 함수는 기본적으로 `UIApplication` 클래스의 인스턴스를 만들어서 GUI를 사용하기 위한 런루프를 돌려주는 작업을 수행한다. 그리고 그 이후에 앱 내에서 일어나는 모든 처리는 `UIApplication` 객체가 관리하게 된다.
 
