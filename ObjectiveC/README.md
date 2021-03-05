@@ -91,26 +91,26 @@ AppDelegate는 이름 그대로 앱 객체(Instance)의 대리인 역할을 한�
 -   `UIViewController` 객체는 UIView 객체들의 생성과 소멸, 이벤트 발생 및 행위들을 관리하는 곳이다.
 -   때문에 View에 나타나기 직전, 나타나기 후, 사라질 때, 사라지기 직전일 때 시스템에서 단계별로 UIViewController에게 호출하고 필요한 메소드를 재정의하여 호출한다.
 
-(1) **- (void)loadView**
+(1) **- (void)loadView**  
 : UIViewController의 view가 생성될 때 호출
 
 (2) **- (void)viewDidLoad**
-: UIViewController가 인스턴스화된 후에 호출
+: UIViewController가 인스턴스화된 후에 호출  
 : 처음에 한 번 세팅해주어야하는 값들을 넣기에 적절하다.
 
-(3) **- (void)viewWillAppear:(BooL)animated**
-: view가 화면에 보여지기 직전에 호출
+(3) **- (void)viewWillAppear:(BooL)animated**  
+: view가 화면에 보여지기 직전에 호출  
 : animated 파라미터는 뷰가 애니메이션을 동반하여 보여지게 되는지 시스템에서 전달해주는 불리언 값이다.
 
-(4) **- (void)viewWillLayoutSubviews**
-: view의 하위 뷰들의 레이아웃이 결정되기 직전에 호출
+(4) **- (void)viewWillLayoutSubviews**  
+: view의 하위 뷰들의 레이아웃이 결정되기 직전에 호출  
 : autoLayout을 하면, 이 때에 제약사항을 계산한다.
 
-(5) **- (void)viewDidLayoutSubviews:(BooL)animated**
-: view가 화면에 보여진 직후에 호출
+(5) **- (void)viewDidLayoutSubviews:(BooL)animated**  
+: view가 화면에 보여진 직후에 호출  
 : 화면이 표시된 이후 애니메이션 등을 보여주고 싶을 때 쓴다.
 
-(6) **- (void)viewWillDisappear:(BOOL)animated**
+(6) **- (void)viewWillDisappear:(BOOL)animated**  
 : view가 화면에서 사라지기 직전에 호출
 
 (7) **-(void)viewDidDisappear:(BOOL)animated**  
