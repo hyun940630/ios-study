@@ -6,6 +6,7 @@
 
 ### Mainly to learn
 
+maybe... (0) Objective-C  
 (1) Swift<br />
 (2) Xcode<br />
 (3) UI, Animation, Collection View<br />
