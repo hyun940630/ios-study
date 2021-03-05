@@ -67,17 +67,17 @@ AppDelegate는 이름 그대로 앱 객체(Instance)의 대리인 역할을 한�
 
 # UIViewController
 
-## TL;DR
-
-1. Updating the contents of the views, usually in response to changes to the underlying data.
-2. Responding to user interactions with views.
-3. Resizing views and managing the layout of the overall interface.
-
 : 앱의 기초가 되는 내부 구조
 
 -   앱은 ViewController로 이루어져 있다. 어떤 앱이던 한 개 이상의 ViewController를 가지고 있다.
 -   ViewController는 View를 가지고 있다.
 -   대부분의 앱은 수많은 ViewController로 이루어져있기도 하다.
+
+## TL;DR
+
+1. Updating the contents of the views, usually in response to changes to the underlying data.
+2. Responding to user interactions with views.
+3. Resizing views and managing the layout of the overall interface.
 
 ## View의 계층관리
 
