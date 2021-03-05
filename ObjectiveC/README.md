@@ -12,13 +12,13 @@
 
 iOS앱은 사실 `UIApplication`이라는 클래스의 객체이다. 프로젝트의 `main` 함수는 기본적으로 `UIApplication` 클래스의 인스턴스를 만들어서 GUI를 사용하기 위한 런루프를 돌려주는 작업을 수행한다. 그리고 그 이후에 앱 내에서 일어나는 모든 처리는 `UIApplication` 객체가 관리하게 된다.
 
-(1) `main` 함수가 실행된다.
-(2) `main` 함수는 다시 `UIApplicationMain` 함수를 호출한다.
-(3) 이 함수는 앱의 본체에 해당하는 객체인 `UIApplication` 객체를 생성한다.(인스턴스 생성)
-(4) 또 `Info.plist` 파일을 읽어들여 파일에 기록된 정보를 참고하여 그외에 필요한 데이터를 로드한다.
-(5) 메인 nib 파일을 사용하는 경우 (4)의 과정에서 로드된다.
-(6) 메인 nib 파일이 없거나, 그 속에 AppDelegate가 없는 경우, AppDelegate 객체를 만들고 앱 객체와 연결한다.
-(7) Run loop를 만드는 등 실행에 필요한 준비를 마무리해 간다.
+(1) `main` 함수가 실행된다.  
+(2) `main` 함수는 다시 `UIApplicationMain` 함수를 호출한다.  
+(3) 이 함수는 앱의 본체에 해당하는 객체인 `UIApplication` 객체를 생성한다.(인스턴스 생성)  
+(4) 또 `Info.plist` 파일을 읽어들여 파일에 기록된 정보를 참고하여 그외에 필요한 데이터를 로드한다.  
+(5) 메인 nib 파일을 사용하는 경우 (4)의 과정에서 로드된다.  
+(6) 메인 nib 파일이 없거나, 그 속에 AppDelegate가 없는 경우, AppDelegate 객체를 만들고 앱 객체와 연결한다.  
+(7) Run loop를 만드는 등 실행에 필요한 준비를 마무리해 간다.  
 (8) 실행 완료를 앞두고 앱 객체가 AppDelegate에게 `application:didFinishLaunchingWithOptions:` 메시지를 보낸다.
 
 ## main.m?
