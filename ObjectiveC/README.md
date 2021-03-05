@@ -61,3 +61,29 @@ AppDelegate는 이름 그대로 앱 객체(Instance)의 대리인 역할을 한�
 ```
 
 그 외에도 AppDelegate는 앱의 상태 변화에 대해 감지할 수 있다. 비활성화 된다거나 잠자기에 들어간다거나 저장된 상태로부터 복구된다거나 하는 것을 알아차리며, iOS 디바이스가 회전했을 때, 방향에 따라 화면을 회전할 것인지 결정할 수도 있다. AppDelegate의 주요 메소드에 대해서는 [`UIAppDelegateProtocol`](https://developer.apple.com/documentation/uikit/uiapplication#//apple_ref/doc/uid/TP40006728) 공식 문서를 참고하면된다.
+
+<br />
+<br />
+
+# UIViewController
+
+: 앱의 기초가 되는 내부 구조
+
+-   앱은 ViewController로 이루어져 있다. 어떤 앱이던 한 개 이상의 ViewController를 가지고 있다.
+-   ViewController는 View를 가지고 있다.
+-   대부분의 앱은 수많은 ViewController로 이루어져있기도 하다.
+
+## View의 계층관리
+
+> Each view controller manages a view hierarchy, the root view of which is stored in the view property of this class. The root view acts primarily as a container for the rest of the view hierarchy. The size and position of the root view is determined by the object that owns it, which is either a parent view controller or the app’s window. The view controller that is owned by the window is the app’s root view controller and its view is sized to fill the window.
+
+-   각각의 ViewController는 View의 계층을 관리한다.
+-   이 계층을 나눌 때에 가장 근원이 되는 것이 **RootView**이다.
+    -   때문에 모든 ViewController는 한개의 RootView를 가진다.
+-   화면에 표시되는 모든 뷰는 RootView의 계층 안에 있어야 한다.
+
+## View와 관련된 Notifications을 다루는 것
+
+> When the visibility of its views changes, a view controller automatically calls its own methods so that subclasses can respond to the change. Use a method like viewWillAppear: to prepare your views to appear onscreen, and use the viewWillDisappear: to save changes or other state information. Use other methods to make appropriate changes.
+
+<img width="582" alt="스크린샷 2021-03-05 17 33 13" src="https://user-images.githubusercontent.com/33711323/110089128-11816500-7dd9-11eb-9b2f-d5de79a09a76.png">
