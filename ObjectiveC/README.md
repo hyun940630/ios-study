@@ -86,4 +86,4 @@ AppDelegate는 이름 그대로 앱 객체(Instance)의 대리인 역할을 한�
 
 > When the visibility of its views changes, a view controller automatically calls its own methods so that subclasses can respond to the change. Use a method like viewWillAppear: to prepare your views to appear onscreen, and use the viewWillDisappear: to save changes or other state information. Use other methods to make appropriate changes.
 
-<img width="582" alt="스크린샷 2021-03-05 17 33 13" src="https://user-images.githubusercontent.com/33711323/110089128-11816500-7dd9-11eb-9b2f-d5de79a09a76.png" style="text-align: center;">
+<img width="582" alt="스크린샷 2021-03-05 17 33 13" src="https://user-images.githubusercontent.com/33711323/110089128-11816500-7dd9-11eb-9b2f-d5de79a09a76.png" style="margin: 0 auto;">
