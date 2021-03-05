@@ -67,6 +67,12 @@ AppDelegate는 이름 그대로 앱 객체(Instance)의 대리인 역할을 한�
 
 # UIViewController
 
+## TL;DR
+
+1. Updating the contents of the views, usually in response to changes to the underlying data.
+2. Responding to user interactions with views.
+3. Resizing views and managing the layout of the overall interface.
+
 : 앱의 기초가 되는 내부 구조
 
 -   앱은 ViewController로 이루어져 있다. 어떤 앱이던 한 개 이상의 ViewController를 가지고 있다.
@@ -82,7 +88,7 @@ AppDelegate는 이름 그대로 앱 객체(Instance)의 대리인 역할을 한�
     -   때문에 모든 ViewController는 한개의 RootView를 가진다.
 -   화면에 표시되는 모든 뷰는 RootView의 계층 안에 있어야 한다.
 
-## View와 관련된 Notifications을 다루는 것
+## View와 관련된 Notifications을 다루는 것(Handling View-Related Notifications)
 
 > When the visibility of its views changes, a view controller automatically calls its own methods so that subclasses can respond to the change. Use a method like viewWillAppear: to prepare your views to appear onscreen, and use the viewWillDisappear: to save changes or other state information. Use other methods to make appropriate changes.
 
@@ -119,3 +125,23 @@ AppDelegate는 이름 그대로 앱 객체(Instance)의 대리인 역할을 한�
 ViewController는 View가 아니기 때문에 화면에 보이지 않는다...!(🤭) 결국, View의 여러가지 요소들을 관장하고 있는 '무언가'인 것이다.
 
 ViewController는 하나의 View를 꼭 가지고 있을 수 있지만, View는 꼭 하나의 View Controller에 속해있을 필요는 없다.(View가 너무 많아질 때에는 메모리가 모자라므로 필요 없을 때는 없애고, 다시 찾아올 수도 있게 한 것)
+
+## View에서 일어나는 user interactions를 받는다
+
+-   **사용자의 모든 이벤트는 ViewController가 받는다.**
+-   그 후에 **각 View에 따라 관련 action 메소드나 delegate를 통해 처리한다.**
+
+## ViewController는 데이터 중계자 역할을 한다.
+
+<img width="794" alt="스크린샷 2021-03-05 17 55 42" src="https://user-images.githubusercontent.com/33711323/110091710-17c51080-7ddc-11eb-8d45-373720e84384.png" align="center" />
+
+-   ViewController는 자신이 관리하는 View와 내부의 데이터를 중계하는 역할을 한다.
+
+## Resource 관리
+
+-   모든 View들을 위에 올리고 있는 ViewController는 모든 View의 책임과 관리를 맡고 있다.
+-   **didReceiveMemoryWarning method**
+    -   앱 사용 중에 메모리가 부족할 때 불리는 메소드
+    -   오랫동안 사용하지 않은 객체와 다시 쉽게 만들 수 있는 객체를 제거한다.
+    -   이후에 다시 불리울 때에는 View를 다시 그린다.
+        : 🏷 참고) 메모리 워닝이 일어날 때 가장 먼저 지워지는 부분은 View이다. 때문에 리소스 관리를 통해 계속 View가 제거/생성이 반복되는 것이다.(이를 통해 사실, ViewDidLoad)가 한 번만 불리는 것이 아닌 것을 알 수 있다.) 때문에 우리는 View의 인스턴스를 생성할 때, 꼭 객체가 nil인지 확인하고 해야한다.
