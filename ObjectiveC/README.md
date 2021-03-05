@@ -87,3 +87,35 @@ AppDelegate는 이름 그대로 앱 객체(Instance)의 대리인 역할을 한�
 > When the visibility of its views changes, a view controller automatically calls its own methods so that subclasses can respond to the change. Use a method like viewWillAppear: to prepare your views to appear onscreen, and use the viewWillDisappear: to save changes or other state information. Use other methods to make appropriate changes.
 
 <img width="582" alt="스크린샷 2021-03-05 17 33 13" src="https://user-images.githubusercontent.com/33711323/110089128-11816500-7dd9-11eb-9b2f-d5de79a09a76.png" align="center" />
+
+-   `UIViewController` 객체는 UIView 객체들의 생성과 소멸, 이벤트 발생 및 행위들을 관리하는 곳이다.
+-   때문에 View에 나타나기 직전, 나타나기 후, 사라질 때, 사라지기 직전일 때 시스템에서 단계별로 UIViewController에게 호출하고 필요한 메소드를 재정의하여 호출한다.
+
+(1) **- (void)loadView**
+: UIViewController의 view가 생성될 때 호출
+
+(2) **- (void)viewDidLoad**
+: UIViewController가 인스턴스화된 후에 호출
+: 처음에 한 번 세팅해주어야하는 값들을 넣기에 적절하다.
+
+(3) **- (void)viewWillAppear:(BooL)animated**
+: view가 화면에 보여지기 직전에 호출
+: animated 파라미터는 뷰가 애니메이션을 동반하여 보여지게 되는지 시스템에서 전달해주는 불리언 값이다.
+
+(4) **- (void)viewWillLayoutSubviews**
+: view의 하위 뷰들의 레이아웃이 결정되기 직전에 호출
+: autoLayout을 하면, 이 때에 제약사항을 계산한다.
+
+(5) **- (void)viewDidLayoutSubviews:(BooL)animated**
+: view가 화면에 보여진 직후에 호출
+: 화면이 표시된 이후 애니메이션 등을 보여주고 싶을 때 쓴다.
+
+(6) **- (void)viewWillDisappear:(BOOL)animated**
+: view가 화면에서 사라지기 직전에 호출
+
+(7) **-(void)viewDidDisappear:(BOOL)animated**  
+: view가 화면에서 사라진 직후 호출
+
+ViewController는 View가 아니기 때문에 화면에 보이지 않는다...!(🤭) 결국, View의 여러가지 요소들을 관장하고 있는 '무언가'인 것이다.
+
+ViewController는 하나의 View를 꼭 가지고 있을 수 있지만, View는 꼭 하나의 View Controller에 속해있을 필요는 없다.(View가 너무 많아질 때에는 메모리가 모자라므로 필요 없을 때는 없애고, 다시 찾아올 수도 있게 한 것)
