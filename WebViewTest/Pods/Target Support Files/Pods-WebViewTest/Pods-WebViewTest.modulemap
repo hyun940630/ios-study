@@ -1,0 +1,6 @@
+framework module Pods_WebViewTest {
+  umbrella header "Pods-WebViewTest-umbrella.h"
+
+  export *
+  module * { export * }
+}

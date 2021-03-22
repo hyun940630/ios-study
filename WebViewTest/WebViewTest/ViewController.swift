@@ -12,6 +12,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
     var webView: WKWebView!
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var isX: Bool = false
 
     override func loadView() {
         super.loadView()
@@ -27,7 +28,9 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlAddress = "https://xtring-dev.tistory.com"
+        isX = false
+        
+        let urlAddress = "http://algo.gohome.website/"
         let url = URL(string: urlAddress)
         let request = URLRequest(url: url!)
         webView?.load(request)
@@ -40,6 +43,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         
         // Dispose of any resource that can be recreated.
     }
+    
     
     // alert 처리
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {

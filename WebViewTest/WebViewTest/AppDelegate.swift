@@ -6,14 +6,26 @@
 //
 
 import UIKit
+import Firebase
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        
+                
+        if (launchOptions != nil) {
+            print("not nil! pass!")
+        }
+        print("im out!")
+        
+        
         return true
     }
 

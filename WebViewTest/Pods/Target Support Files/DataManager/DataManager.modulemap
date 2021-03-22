@@ -1,0 +1,6 @@
+framework module DataManager {
+  umbrella header "DataManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
