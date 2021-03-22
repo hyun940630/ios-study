@@ -412,3 +412,240 @@ print(email)    // Runtime Error!
 > fatal error: unexpectedly found nil while unwrapping an Optional value
 
 **가급적이면 일반적인 옵셔널을 사용해서 정의하고 옵셔널 바인딩 또는 옵셔널 체이닝을 통해 값에 접근하는 것이 바람직합니다.**
+
+## 함수
+
+Swift에서 함수는 `func` 키워드를 사용해서 정의합니다. 그리고 `->`를 사용해서 함수의 반환(return) 타입을 지정합니다.
+
+```swift
+func hello(name: String, time: Int) -> String {     // hello 함수는 name(string), time(int) parameter들을 받으며 String 타입을 반환합니다.
+    var string = ""
+    for _ in 0..<time {
+        string += "\(name)님 안녕하세요!\n"
+    }
+    return string
+}
+```
+
+Swift에서는 함수를 호출할 때 파라미터 이름을 함께 써주어야 합니다.
+
+```swift
+hello(name: "Mark", time: 3)    // 함수 호출 시 파라미터에 각 파라미터 명을 써주어야 함
+```
+
+함수 호출 시 사용하는 파라미터 이름과 함수 내부에서 사용하는 파라미터 이름을 다르게 사용할 수 있습니다.
+
+```swift
+func hello(to name: String, numberOfTimes time: Int) {
+    // 함수 내부에서는 `name`, `time`을 사용합니다.
+    for _ in 0..<time {
+        print(name)
+    }
+}
+
+hello(to: "Mark", numberOfTimes: 3)     // 함수를 호출 할 때는 `to`, `numberOfTimes`를 사용합니다.
+```
+
+파라미터 이름을 `_`로 정의하면 함수를 호출할 때 파라미터 이름을 생략할 수 있습니다.
+
+```swift
+func hello(_ name: String, time: Int) {
+    // ...
+}
+
+hello("Mark", time: 3)      // 'name: '이 생략됨
+```
+
+파라미터에 기본값을 지정할 수도 있습니다. 기본값이 지정되어 있다면 함수 호출 시 생략이 가능합니다.
+
+```swift
+func hello(name: String, time: Int = 1) {
+    // ...
+}
+
+hello("Mark")       // time은 기본값이 지정되어 있으므로 생략이 가능
+```
+
+`...`을 사용하면 개수가 정해지지 않은 파라미터(Variadic Parameters)를 받을 수 있습니다.
+
+```swift
+func sum(_ numbers: Int...) -> {
+    var sum = 0
+    for number in numbers {
+        sum += number
+    }
+    return sum
+}
+
+sum(1, 2)
+sum(3, 4, 5)
+// * number parameter를 정하지 않고 받을 수 있음
+```
+
+함수 안에 함수를 다시 작성하는 것이 가능합니다.
+
+```swift
+func hello(name: String, time: Int) {
+    func message(name: String) {
+        return "\(name)님 안녕하세요!"
+    }
+
+    for _ in 0..<time {
+        print(message(name: name))
+    }
+}
+```
+
+함수 안에 정의한 함수를 반환 할 수 있습니다.
+
+```swift
+func helloGenerator(message: String) -> (String) -> String {
+    func hello(name: String) -> String {
+        return name + message
+    }
+
+    return hello
+}
+
+let hello = helloGenerator(message: "님 안녕하세요!")
+hello("Mark")   // Mark님 안녕하세요!
+```
+
+여기서 핵심은 `helloGenerator()` 함수의 반환 타입이 `(String) -> String`라는 것입니다. 즉, `helloGenerator()`는 '문자열을 받아서 문자열을 반환하는 함수'를 반환하는 함수라는 것입니다.
+`helloGenerator()` 안에 정의한 `hello()` 함수가 여러개의 파라미터를 받는다면 아래와 같이 사용합니다.
+
+```swift
+func helloGenerator(message: String) -> (String, String) -> String {
+    func hello(firstName: String, lastName: String) -> String {
+        return lastName + firstName + message
+    }
+    return hello
+}
+
+let hello = helloGenerator(message: "님 안녕하세요!")
+hello("Mark", "Hwang")
+```
+
+## 클로저(Closure)
+
+클로저(Closure)를 사용하면 바로 위에 작성한 코드를 조금 더 간결하게 만들 수 있습니다. 클로저는 중괄호(`{}`)로 감싸진 '실행 가능한 코드 블럭'입니다.
+
+```swift
+func helloGenerator(message: String) -> (String, String) -> String {
+    return { (firstName: String, lastName: String) -> String in
+        return lastName + firstName + message
+    }
+}
+```
+
+일반적인 함수와 다르게 함수 이름을 정의하지 않습니다. 하지만 파라미터를 받을 수 있고 반환 값이 존재할 수 있습니다. 이렇게 생긴 형태를 클로저(Closure)라고 합니다.
+
+클로저는 중괄호(`{}`)로 감싸져있습니다. 그리고 파라미터를 괄호로 감싸서 정의합니다. 함수와 마찬가지로 `->`를 사용해서 반환 타입을 명시합니다. 조금 다른 점은 `in` 키워드를 사용해서 파라미터, 반환 타입 영역과 실제 클로저의 코드를 분리하고 있습니다.
+
+```swift
+{ (firstName: String, lastName: String) -> in
+    return lastName + firstName + message
+}
+```
+
+클로저의 장점은 **간결함**과 **유연함**에 있습니다.
+
+Swift 컴파일러의 타입 추론 덕분에, `helloGenerator()`함수에서 반환하는 타입을 가지고 클로저에서 어떤 파라미터를 받고 어떤 타입을 반환하는지를 알 수 있습니다. >> **파라미터 타입을 생략 가능**
+
+```swift
+func helloGenerator(message: String) -> (String, String) -> String {
+    return { firstName, lastName in
+        return lastName + firstName + message
+    }
+}
+```
+
+파라미터에 임의의 변수를 통해 접근이 가능합니다.
+
+```swift
+func helloGenerator(message: String) -> (String, String) -> String {
+    return {
+        return $1 + $0 + message
+    }
+}
+```
+
+클로저 내부의 코드가 한 줄이라면, `return`까지도 생략할 수 있습니다.
+
+```swift
+func helloGenerator(message: String) -> (String, String) -> String {
+    return { $1 + $0 + message }
+}
+```
+
+코드를 최대한으로 생략하면 아래의 코드가 나옵니다.
+
+```swift
+let hello: (String, String) -> String = { $1 + $0 + "님 안녕하세요!" }
+hello("Mark", "Hwang")
+```
+
+여기에는 옵셔널과 옵셔널 체이닝도 사용가능합니다.
+
+```swift
+let hello: ((String, String) -> String)?
+hello?("Mark", "Hwang")
+```
+
+클로저를 변수로 정의하고 함수에서 반환할 수도 있는 것처럼, 파라미터로도 받을 수 있습니다.
+
+```swift
+func manipulate(number: Int, using block: Int -> Int) -> Int {
+    return block(number)
+}
+
+manipulate(number: 10, using: { (number: Int) -> Int in
+    return number * 2
+})
+```
+
+이것도 생략이 가능합니다.
+
+```swift
+manipulate(number: 10, using: {
+    $0 * 2
+})
+```
+
+만약 함수의 마지막 파라미터가 클로저라면, 괄호와 파라미터 이름마저 생략할 수 있습니다.
+
+```swift
+manipulate(number: 10) {
+    $0 * 2
+}
+```
+
+이런 구조로 만들어진 예시가 `sort()`와 `filter()`입니다. 함수가 클로저 하나만을 파라미터로 받는다면, 괄호를 아예 쓰지 않아도 됩니다.
+
+```swift
+let numbers = [1, 3, 2, 6, 7, 5, 8, 4]
+let sortedNumbers = numbers.sort { $0 < $1 }
+print(sortedNembers)    // [1, 2, 3, 4, 5, 6, 7, 8]
+
+let evens = numbers.filter { $0 % 2 == 0 }
+print(evens)    // [2, 6, 8, 4]
+```
+
+## 클로저 활용하기
+
+클로저는 Swift의 많은 곳에서 사용됩니다. `sort()`, `filter()`와 같은 배열에 많이 사용됩니다. 대표적인 메서드로는 `sort()`, `filter()`, `map()`, `reduce()`가 있습니다.
+
+`map()`은 파라미터로 받은 클로저를 모든 요소에 실행하고, 그 결과를 반환합니다.
+
+```swift
+let arr1 = [1, 3, 6, 2, 7, 9]
+let arr2 = arr1.map { $0 * 2 }  // [2, 6, 12, 4, 14, 18]
+```
+
+`reduce()`는 초깃값이 주어지고, 초깃값과 첫 번째 요소의 클로저 실행 결과, 그리고 그 결과와 두 번째 요소의 클로저 실행 결과, 그리고 그 결과의 세 번째 요소의 클로저 실행 결과, ... 를 끝까지 실행한 후의 값을 반환합니다.
+
+```swift
+arr1.reduce(0) { $0 + $1 }  // 28
+```
+
+> Swift에서는 연산자도 함수입니다. 따라서 이와 같은 문법도 가능합니다. `arr1.reduce(0, +) // 28`
