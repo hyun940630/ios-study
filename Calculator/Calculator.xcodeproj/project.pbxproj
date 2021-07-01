@@ -15,6 +15,7 @@
 		E9FD5819268DBA7B00C3C598 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD5818268DBA7B00C3C598 /* CalculatorTests.swift */; };
 		E9FD5824268DBA7B00C3C598 /* CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD5823268DBA7B00C3C598 /* CalculatorUITests.swift */; };
 		E9FD5834268DBBE300C3C598 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD5833268DBBE300C3C598 /* RootViewController.swift */; };
+		E9FD5837268E273700C3C598 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD5836268E273700C3C598 /* Utilites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		E9FD5823268DBA7B00C3C598 /* CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUITests.swift; sourceTree = "<group>"; };
 		E9FD5825268DBA7B00C3C598 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9FD5833268DBBE300C3C598 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		E9FD5836268E273700C3C598 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilites.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				E9FD5801268DBA7900C3C598 /* AppDelegate.swift */,
+				E9FD5835268E270900C3C598 /* Utilities */,
 				E9FD5832268DBBC700C3C598 /* Controller */,
 				E9FD5803268DBA7900C3C598 /* SceneDelegate.swift */,
 				E9FD5807268DBA7900C3C598 /* Main.storyboard */,
@@ -134,6 +137,14 @@
 				E9FD5833268DBBE300C3C598 /* RootViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		E9FD5835268E270900C3C598 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E9FD5836268E273700C3C598 /* Utilites.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9FD5837268E273700C3C598 /* Utilites.swift in Sources */,
 				E9FD5802268DBA7900C3C598 /* AppDelegate.swift in Sources */,
 				E9FD5834268DBBE300C3C598 /* RootViewController.swift in Sources */,
 				E9FD5804268DBA7900C3C598 /* SceneDelegate.swift in Sources */,
