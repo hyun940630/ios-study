@@ -8,7 +8,7 @@
 import UIKit
 
 class Utilites {
-    private static let shared = Utilites()
+    static let shared = Utilites()
     
     // Button을 만드는 함수
     // 텍스트, 배경, 폰트 색상
