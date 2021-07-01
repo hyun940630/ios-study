@@ -15,7 +15,13 @@ class RootViewController:UIViewController {
     // lazy 키워드를 사용하면 '가능한 늦게 만들어!'라는 의미로 나중에 여러개 생성될 버튼들이 각각의 기능을 할 수 있도록 함. 속성을 동적으로 만듬
     private lazy var numberButton:UIButton = {
         let bt = UIButton(type: UIButton.ButtonType.system)     // 대체적(일반적)으로 color값은 system, normal을 많이 사용한다
-        bt.setTitle("1", for: UIControl.State.normal)
+        bt.setTitle("1", for: UIControl.State.normal)   // Button에 들어갈 내용과 색상 설정
+        bt.titleLabel?.font = UIFont.systemFont(ofSize: 42, weight: UIFont.Weight.regular)
+        bt.backgroundColor = .systemGray2
+        bt.tintColor = .white
+        bt.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        bt.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        bt.layer.cornerRadius = 40
         return bt
     }()
     // ()의 의미: 실행한다.
