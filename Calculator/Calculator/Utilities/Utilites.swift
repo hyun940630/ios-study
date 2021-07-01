@@ -8,6 +8,7 @@
 import UIKit
 
 class Utilites {
+    // shared : 클래스 안의 함수를 다른 클래스에서 접근하기 위해 인스턴스가 필요하다. 요청을 하는 클래스에서 인스턴스 객체를 생성하여 만들어도 되지만 shared라는 static 변수를 통해 간편하게 함수를 공유하여 사용할 수 있다.
     static let shared = Utilites()
     
     // Button을 만드는 함수
