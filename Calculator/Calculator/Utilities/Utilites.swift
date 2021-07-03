@@ -20,7 +20,16 @@ class Utilites {
         bt.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
         bt.heightAnchor.constraint(equalToConstant: 80).isActive = true
         bt.layer.cornerRadius = 40
+        
+        bt.addTarget(self, action: #selector(onTapButton), for: .touchUpInside)
+        
         return bt
     }
     
+    @objc
+    func onTapButton() {
+        print("tab button")
+        print(nunmber)
+    }
 }
+ 

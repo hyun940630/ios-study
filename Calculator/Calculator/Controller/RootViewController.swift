@@ -64,11 +64,11 @@ class RootViewController:UIViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
         
-        
         view.addSubview(numberSevenButton)
         numberSevenButton.translatesAutoresizingMaskIntoConstraints = false
         numberSevenButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 360).isActive = true
         numberSevenButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+//        numberSevenButton.addTarget(self, action: #selector(onTapButton), for: .touchUpInside)
         
         view.addSubview(numberEightButton)
         numberEightButton.translatesAutoresizingMaskIntoConstraints = false
@@ -116,4 +116,8 @@ class RootViewController:UIViewController {
         numberZeroButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
     }
     
+//    @objc
+//    func onTapButton() {
+//        print("Button was tapped.")
+//    }
 }
