@@ -51,6 +51,10 @@ class RootViewController:UIViewController {
         Utilites.shared.makeNumberButton(number: "9", width: 80)
     }()
     
+    private lazy var plusButton:UIButton = {
+        Utilites.shared.makeFuncButton(character: "+")
+    }()
+    
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -68,7 +72,6 @@ class RootViewController:UIViewController {
         numberSevenButton.translatesAutoresizingMaskIntoConstraints = false
         numberSevenButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 360).isActive = true
         numberSevenButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-//        numberSevenButton.addTarget(self, action: #selector(onTapButton), for: .touchUpInside)
         
         view.addSubview(numberEightButton)
         numberEightButton.translatesAutoresizingMaskIntoConstraints = false
@@ -79,6 +82,11 @@ class RootViewController:UIViewController {
         numberNineButton.translatesAutoresizingMaskIntoConstraints = false
         numberNineButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 360).isActive = true
         numberNineButton.leftAnchor.constraint(equalTo: numberEightButton.rightAnchor, constant: 20).isActive = true
+        
+        view.addSubview(plusButton)
+        plusButton.translatesAutoresizingMaskIntoConstraints = false
+        plusButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 360).isActive = true
+        plusButton.leftAnchor.constraint(equalTo: numberNineButton.rightAnchor, constant: 20).isActive = true
         
         view.addSubview(numberFourButton)
         numberFourButton.translatesAutoresizingMaskIntoConstraints = false
@@ -116,8 +124,4 @@ class RootViewController:UIViewController {
         numberZeroButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
     }
     
-//    @objc
-//    func onTapButton() {
-//        print("Button was tapped.")
-//    }
 }

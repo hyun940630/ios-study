@@ -29,8 +29,36 @@ class Utilites {
     
     @objc
     func onTapButton(sender: UIButton) {
+        
         print(sender.tag)
         print("tab button")
+        switch sender.tag {
+        case 0...9 :
+            print(sender.tag)
+        default:
+            print("I'm not Number")
+        }
+    }
+    
+    func makeFuncButton(character: String) -> UIButton {
+        let funcBtn = UIButton(type: UIButton.ButtonType.system)
+        funcBtn.setTitle(character, for: UIControl.State.normal)
+        funcBtn.titleLabel?.font = UIFont.systemFont(ofSize: 42, weight: UIFont.Weight.regular)
+        funcBtn.backgroundColor = .systemOrange
+        funcBtn.tintColor = .white
+        funcBtn.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        funcBtn.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        funcBtn.layer.cornerRadius = 40
+        
+        funcBtn.addTarget(self, action: #selector(onTapFuncBtn), for: .touchUpInside)
+        
+        return funcBtn
+    }
+    
+    @objc
+    func onTapFuncBtn(sender: UIButton) {
+        print(sender.currentTitle!)
+        print("tab func button")
     }
 }
  
