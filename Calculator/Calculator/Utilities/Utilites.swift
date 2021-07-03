@@ -29,7 +29,6 @@ class Utilites {
     @objc
     func onTapButton() {
         print("tab button")
-        print(nunmber)
     }
 }
  
